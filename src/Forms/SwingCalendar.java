@@ -23,13 +23,38 @@ import java.util.GregorianCalendar;
 import java.util.Locale;
 
 public class SwingCalendar extends JFrame {
+    private static boolean first_thread=true;
 
+    private static SwingCalendar instance=null;
     DefaultTableModel model;
     Calendar cal = new GregorianCalendar();
     JLabel label;
+    public static SwingCalendar getInstance()
+    {
+//        if(instance==null)
+//        {
+//            if(first_thread==true)
+//            {
+//                first_thread=false;
+//                try{
+//                    Thread.currentThread();
+//                    Thread.sleep(1000);
+//                }catch(InterruptedException e){
+//                    System.out.println("Error in thread :(");
+//                }
+//            }
+            synchronized (SwingCalendar.class)
+            {
+                if(instance==null)
+                instance= new SwingCalendar();
+            }
 
+
+//        }
+        return instance;
+    }
     // Todo: Refactor this constructor so the program will create only one copy of this object
-    SwingCalendar() { // Constructor
+    private SwingCalendar() { // Constructor
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setTitle("Swing Calendar");

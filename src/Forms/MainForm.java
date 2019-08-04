@@ -23,8 +23,6 @@ public class MainForm extends JFrame {
         this.setTitle("Main Form");
         this.setSize(600, 200);
         this.setLayout(new FlowLayout(FlowLayout.RIGHT));
-        this.setVisible(true);
-
         JButton b1 = new JButton("Show Calender 1"); // Button 1 (Create Calender 1)
         b1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
@@ -46,6 +44,9 @@ public class MainForm extends JFrame {
         panel.add(b2);
 
         this.add(panel);
+        this.setVisible(true);
+
+
     }
 
     /**
@@ -53,7 +54,8 @@ public class MainForm extends JFrame {
      * Todo: This method logs the object HashCode in a text file, after refactoring the code; show warning message if the HashCode of Calender1 doesn't equal Calender2 HashCode
      */
     private void showNewCalender() {
-        SwingCalendar sc = new SwingCalendar();
+        SwingCalendar sc = SwingCalendar.getInstance();
+        sc.setVisible(true);
         Util.Logger.log("Object HC: " + sc.hashCode()); // Log Calender hash code
     }
 
